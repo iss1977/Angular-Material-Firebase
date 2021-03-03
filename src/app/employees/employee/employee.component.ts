@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import {EmployeeService} from './../../shared/employee.service'
+import {DepartmentService} from './../../shared/department.service'
+import {NotificationService} from './../../shared/notification.service'
 
-interface Deparment {
-  id: number;
-  value: string;
-}
 
 
 
@@ -16,23 +14,30 @@ interface Deparment {
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(public service: EmployeeService) { }
+  constructor(public service: EmployeeService, public departmentService: DepartmentService, public notificationService: NotificationService) { }
 
 
-  departments: Deparment[] = [
-    {id : 1, value: 'Deparment nr.1'},
-    {id : 2, value: 'Deparment nr.2'},
-    {id : 3, value: 'Deparment nr.3'},
-  ]
 
   ngOnInit(): void {
+      // we must initialize the this.employeeList = this.db.list('employees');
+      this.service.getEmployees();
   }
 
   onResetForm(){
     this.service.form.reset();
     this.service.initializeFormGroup();
+    this.notificationService.success('Saved successfuly.');
   }
 
+  onSubmit(){
+    if(this.service.form.valid){
+      // this.service.form.value will contain an object compatible with our employee service as declared in the service with :  form: FormGroup = new FormGroup( object description )
+      this.service.insertEmployee(this.service.form.value);
+      // reset the form after insert
+      this.service.form.reset();
+      this.service.initializeFormGroup();
 
+    }
+  }
 
 }

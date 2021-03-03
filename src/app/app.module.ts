@@ -10,10 +10,20 @@ import { EmployeeComponent } from './employees/employee/employee.component';
 import {MaterialModule} from './material/material.module';
 
 
+//Firebase Imports
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+//we must import the enviroment variable also, where the firestore configuration is saved.
+import {environment} from './../environments/environment';
+
+
 // Reactive Forms
 import {ReactiveFormsModule} from '@angular/forms'
 
+
+// also add to "providers":  !!!
 import {EmployeeService} from './shared/employee.service';
+import {DepartmentService} from './shared/department.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +37,12 @@ import {EmployeeService} from './shared/employee.service';
     //Mat compoinents
     MaterialModule,
     // Reactive forms module must be imported
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    //Angular Fire
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, DepartmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
