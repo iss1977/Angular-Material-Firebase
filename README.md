@@ -1,5 +1,6 @@
-# Angular Material Forms
+# Angular Material Application
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/480px-Angular_full_color_logo.svg.png" width="200">
 
 ## Features
 
@@ -9,6 +10,3 @@
 - Wire up a dinamic input field / render dynamic dropdown
 - popup notification in angular material
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
